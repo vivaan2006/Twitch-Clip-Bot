@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Activate venv
+source .venv/bin/activate
+
+# Step 1: Download + Format
+echo "📥 Downloading and formatting clips..."
+python scripts/download_and_format.py
+
+# Step 2: Add Titles
+echo "🖋️ Adding on-screen titles..."
+python scripts/add_title.py
+
+# Step 3: Generate Subtitles
+echo "💬 Generating subtitles..."
+python src/whisper_subtitles.py \
+  --input-dir output/titled \
+  --output-dir output/subtitled \
+  --language en
+
+# Step 4: Burn In Subtitles
+echo "🔥 Burning subtitles into final videos..."
+bash scripts/burn_in_subtitles.sh
+
+echo "✅ Done! Final videos are in output/final/"
+#!/bin/bash
+
+# Activate venv
+source .venv/bin/activate
+
+# Step 1: Download + Format
+echo "📥 Downloading and formatting clips..."
+python scripts/download_and_format.py
+
+# Step 2: Add Titles
+echo "🖋️ Adding on-screen titles..."
+python scripts/add_title.py
+
+# Step 3: Generate Subtitles
+echo "💬 Generating subtitles..."
+python src/whisper_subtitles.py \
+  --input-dir output/titled \
+  --output-dir output/subtitled \
+  --language en
+
+# Step 4: Burn In Subtitles
+echo "🔥 Burning subtitles into final videos..."
+bash scripts/burn_in_subtitles.sh
+
+echo "✅ Done! Final videos are in output/final/"
+
